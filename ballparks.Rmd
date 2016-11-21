@@ -1,0 +1,20 @@
+---
+title: "Ballparks"
+author: "Joel Goodbody"
+date: "November 21, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(leaflet)
+ballparks <- read.csv(file="baseballstadiums.csv", header=TRUE)
+ballparks_leaf <- data.frame(lat = ballparks$Latitude, lng = ballparks$Longitude, popup = ballparks$NAME)
+ballparks_map <- leaflet(ballparks_leaf) %>% addTiles() %>% addMarkers(popup=ballparks$NAME)
+ballparks_map
+```
+
+Ballparks database downloaded from [Seamheads](www.seamheads.com/ballparks). Information originally obtained free of charge from and is copyrighted by [Retrosheet](www.retrosheet.org).
